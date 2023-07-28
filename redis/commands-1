@@ -1,0 +1,118 @@
+docker exec -it 921 bash
+redis-cli - launch cli
+
+set key value
+get key
+
+keys * - show all keys
+keys user* - start with user
+
+scan 0 - modern way sho show all keys with cursor. 10 keys
+scan 0 MATCH user* - start with user
+scan 0 MATCH user* count 3 - first 3
+
+del a - delete key
+del a b c - multiple keys
+
+flushdb - remove everything
+
+set a b ex 10 - expire in 10 seconds
+ttl a - access the remaining time before expiration
+expire a 60 - extend the expiration. starts from 60. does not add up
+
+set a b exat 10292398348934 - timestamp
+
+if you set a new value for a (like set a c) taht the expiry time will be removed
+set a c keepttl - not to touch the remaining time
+
+xx - if it present
+nx - if it not present
+set a b xx - set only if key a present
+set a b xn - only if not present
+
+exists a - 1 or 0
+
+set a 1
+incr a - increase a
+decr a - decrease a
+
+incr bb - with no existing key creates a new key value with bb 1
+
+for float - 1.02
+incrbyfloat a .3 - +0.3
+incrbyfloat a -.3 - -0.3
+
+INCRBY a 20 - add 20
+decrby a 20 - subtract 20
+
+_____________
+HASH
+hset field:value field:value field:value
+
+hset id:1 name dummy points 50
+hgetall id:1 - for all fields
+
+hkeys id:1 - see keys
+hvals id:1 - see values
+
+hdel id:1 name - to delete the field
+
+del id:1 - delete the whole object
+
+expire id:1 10
+ttl id:1
+
+hexists id:1  status - check whether status field exists (1 or 0)
+______________
+
+
+LISTS
+push pop
+rpush - add to right
+lpush - add to the first position
+
+lpush users mike tom billy
+type users - list
+llen users - list length
+lrange users 0 -1 - show all in the list
+
+lpop users - remove the first (billy)
+lpop users 2 - remove 2
+rpop users - remove the last (mike)
+
+MESSAGE QUEUE
+rpush payment-event - producer
+lpop payment-event - consumers
+
+STACK
+rpush users 1 2 3 4 5
+rpop users
+
+
+SET
+sadd users 1
+
+scard users - size
+smembers users - show all
+
+sismember users 1 - check if present
+
+srem users 1 - remove
+spop users - remove randomly
+
+SET INTERSECTIONS
+
+sadd skill:java 1 2 3 4
+sadd skill:python 2 4 5 6 7
+sadd skill:c++ 2 4 7 8 9
+
+sinter skill:java skill:python skill:c++ - to find intersection
+sunion skill:java skill:python skill:c++ - to find all in union
+
+sdiff skill:java skill:python - does not show intersected elements in the result ( "1", "3")
+
+sinterstore diff skill:java skill:python - store in another set
+
+SORTED SET
+
+
