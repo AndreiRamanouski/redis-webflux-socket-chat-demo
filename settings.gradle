@@ -2,3 +2,4 @@ rootProject.name = 'redis-web-flux-chat-demo'
 
 include 'redisson-demo'
 include 'caching-demo'
+include 'redis-performance'
