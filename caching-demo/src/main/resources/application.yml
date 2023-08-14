@@ -1,4 +1,7 @@
 spring:
   data:
     redis:
+city:
+  service:
+    url: " "
 

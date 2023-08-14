@@ -21,7 +21,7 @@ public class WeatherService {
         return 0;
     }
 
-    @Scheduled(fixedRate = 10, timeUnit = TimeUnit.SECONDS)
+//    @Scheduled(fixedRate = 10, timeUnit = TimeUnit.SECONDS)
     public void update() {
         log.info("Update");
         IntStream.rangeClosed(1, 5)
